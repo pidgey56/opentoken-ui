@@ -9,7 +9,9 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "prettier": "prettier --write ./src/**/*.ts",
-    "qa": "npm run prettier && npm test"
+    "qa": "npm run prettier",
+    "commit": "git-cz"
+
   },
   "private": true,
   "dependencies": {
