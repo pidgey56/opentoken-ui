@@ -1,6 +1,9 @@
-import { Injectable } from "@angular/core";
-import Web3 from "web3";
-import { Observable, from } from "rxjs";
+import { Injectable } from '@angular/core';
+import Web3 from 'web3';
+import { Observable, from } from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+
+const contractAbi = require('../assets/HelloWorld.json');
 
 export interface IBalance {
   address: string;
@@ -8,17 +11,19 @@ export interface IBalance {
 }
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class Web3Service {
-  private instance: Web3;
+  private readonly instance: Web3;
+  private contractAddr = '0xCfEB869F69431e42cdB54A4F4f105C19C080A601';
 
-  constructor() {
-    this.instance = new Web3("ws://localhost:8545");
+  constructor(private http: HttpClient) {
+    this.instance = new Web3('ws://localhost:8545');
   }
 
-  getInstance() {
-    return this.instance;
+  getDumbValue(): Observable<string> {
+    const contract = new this.instance.eth.Contract(contractAbi.abi, this.contractAddr);
+    return contract.methods.getDumbValue().call();
   }
 
   getAddresses(): Observable<Array<string>> {
@@ -28,8 +33,8 @@ export class Web3Service {
   getBalances(): Observable<Array<IBalance>> {
     return from(
       this.instance.eth.getAccounts().then(accounts => {
-        let balances: Array<IBalance> = [];
-        for (let account of accounts) {
+        const balances: Array<IBalance> = [];
+        for (const account of accounts) {
           this.instance.eth.getBalance(account).then(balance => {
             const b: IBalance = {
               address: account,
