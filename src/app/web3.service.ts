@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
-import {Subject} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import { AbiItem } from 'web3-utils';
+import {fromPromise} from 'rxjs/internal-compatibility';
 declare let require: any;
 const Web3 = require('web3');
 const contract = require('@truffle/contract');
@@ -14,7 +15,7 @@ export class Web3Service {
   private web3: any;
   private accounts: string[];
   public ready = false;
-  private contractAddr = '0xCfEB869F69431e42cdB54A4F4f105C19C080A601';
+  private contractAddr = '0xA586074FA4Fe3E546A132a16238abe37951D41fE';
 
   public accountsObservable = new Subject<string[]>();
 
@@ -25,7 +26,6 @@ export class Web3Service {
   }
 
   public bootstrapWeb3() {
-    console.log('init')
     // Checking if Web3 has been injected by the browser (Mist/MetaMask)
     if (typeof window.ethereum !== 'undefined') {
       // Use Mist/MetaMask's provider
@@ -41,30 +41,17 @@ export class Web3Service {
       this.web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
     }
 
-    // setInterval(() => this.refreshAccounts(), 100);
+    setInterval(() => this.refreshAccounts(), 1000);
   }
 
-  public async artifactsToContract(artifacts) {
+  public async artifactToContract(artif): Promise<any> {
     if (!this.web3) {
       const delay = new Promise(resolve => setTimeout(resolve, 100));
       await delay;
-      return await this.artifactsToContract(artifacts);
+      return await this.artifactToContract(artif);
     }
-
-    const contractAbstraction = contract(artifacts);
-    contractAbstraction.setProvider(this.web3.currentProvider);
-    return contractAbstraction;
-
-}
-
-  public async artifToContract(artif): Promise<any> {
-    if (!this.web3) {
-      const delay = new Promise(resolve => setTimeout(resolve, 100));
-      await delay;
-      return await this.artifToContract(artif);
-    }
-    const b: AbiItem = artif.abi;
-    return new this.web3.eth.Contract(b, this.contractAddr);
+    const item: AbiItem = artif.abi;
+    return new this.web3.eth.Contract(item, this.contractAddr);
   }
 
   private async refreshAccounts() {

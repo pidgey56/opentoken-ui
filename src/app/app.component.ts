@@ -1,6 +1,6 @@
 import { Web3Service } from './web3.service';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import {from, Observable} from 'rxjs';
 
 import { Contract } from 'web3-eth-contract';
 declare let require: any;
@@ -15,32 +15,32 @@ export class AppComponent implements OnInit {
   title = 'openToken';
   HelloWorld: Contract;
 
+  accounts: string[];
+  value: string;
+
   constructor(private web3Service: Web3Service) {}
 
-  ngOnInit() {
-    /*this.web3Service.artifactsToContract(helloWorldArtifacts)
-      .then(HelloWorldAbstraction => {
-        this.HelloWorld = HelloWorldAbstraction;
-        this.HelloWorld.deplo
-      })*/
-    let blap;
-    this.web3Service.artifToContract(helloWorldArtifacts)
-      .then(cc => {
-        // return cc.methods.getDumbValue().call();
-        // }).then(dumb => console.log(dumb));
-        blap = cc;
-               return cc.methods.setDumbValue('Hello')
-          .send({from: '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', gas: "210000"});
-      }).then((f) => {
-        console.log(1, f);
-        return blap.methods.getDumbValue().call();
-    })
-      .then((res) => console.log(0, res))
-      .catch(err => console.error(err.message));
-
-    // this.HelloWorld.methods.getDumbValue().call()
-      /*.then(db => {
-        console.log('OK ', db);
-      });*/
+  watchAccount() {
+    this.web3Service.accountsObservable.subscribe((accounts) => {
+      this.accounts = accounts;
+    });
   }
+
+  sendTx() {
+    this.HelloWorld.methods.setDumbValue('Blaaaap').send({ from: this.accounts[0] });
+  }
+
+  ngOnInit() {
+    this.watchAccount();
+    this.web3Service.artifactToContract(helloWorldArtifacts)
+      .then(cc => {
+        this.HelloWorld = cc;
+        return this.HelloWorld.methods.getDumbValue().call();
+        }).then(dumb => {
+          this.value = dumb;
+    });
+  }
+
+
+
 }
