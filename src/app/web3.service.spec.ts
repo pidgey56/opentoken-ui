@@ -1,6 +1,6 @@
 import { TestBed } from "@angular/core/testing";
 
-import { Web3Service } from "./web3.service";
+import { Web3Service } from "./2web3.service";
 
 describe("Web3Service", () => {
   beforeEach(() => TestBed.configureTestingModule({}));
