@@ -1,0 +1,12 @@
+.app-welcome__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-welcome__image {
+  img {
+    width: 400px;
+  }
+}

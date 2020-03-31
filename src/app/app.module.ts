@@ -10,10 +10,22 @@ import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HelloWorldComponent } from './hello-world/hello-world.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {RouterModule, Routes} from '@angular/router';
+import { WelcomeComponent } from './welcome/welcome.component';
+
+const appRoutes: Routes = [
+  { path: 'hello-world', component: HelloWorldComponent},
+  { path: '', component: WelcomeComponent },
+  { path: '**', redirectTo: '/'}
+];
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, HelloWorldComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, BrowserAnimationsModule, MatToolbarModule, MatButtonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, HelloWorldComponent, WelcomeComponent],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, BrowserAnimationsModule, MatToolbarModule, MatButtonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule,
+    RouterModule.forRoot(
+      appRoutes,
+    )
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
