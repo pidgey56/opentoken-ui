@@ -3,6 +3,11 @@
     My little dumb value: {{ dumbValue }}
   </div>
   <div class="app-hello-world__form">
-    h
+    <form [formGroup]="form" (ngSubmit)="sendTx()">
+      <mat-form-field>
+        <input matInput formControlName="newValue" placeholder="New value"/>
+      </mat-form-field>
+      <button mat-button type="submit" [disabled]="!form.valid">Send tx</button>
+    </form>
   </div>
 </div>

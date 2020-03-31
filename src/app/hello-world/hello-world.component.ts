@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Web3Service} from '../web3.service';
 import { Contract } from 'web3-eth-contract';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 const helloWorldArtifacts = require('../../assets/HelloWorld.json');
 
@@ -13,6 +14,7 @@ export class HelloWorldComponent implements OnInit {
   HelloWorldInstance: Contract;
   dumbValue: string;
   account: string;
+  form: FormGroup;
 
   constructor(private web3Service: Web3Service) { }
 
@@ -25,6 +27,10 @@ export class HelloWorldComponent implements OnInit {
       }).then(dumb => {
       this.dumbValue = dumb;
     });
+
+    this.form = new FormGroup({
+      newValue: new FormControl('', Validators.required),
+    });
   }
 
   watchAccount() {
@@ -33,11 +39,13 @@ export class HelloWorldComponent implements OnInit {
     });
   }
 
-
   sendTx() {
-    this.HelloWorldInstance.methods.setDumbValue('Helloo')
+    this.HelloWorldInstance.methods.setDumbValue(this.form.getRawValue().newValue)
       .send({ from: this.account })
-      .then(() => this.refreshDumbValue());
+      .then(() => {
+        this.form.reset();
+        this.refreshDumbValue();
+      });
   }
 
   refreshDumbValue(): void {
