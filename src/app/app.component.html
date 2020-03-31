@@ -1,9 +1,14 @@
+<div class="app-component__container">
+  <app-header [title]="title" class="app-component__header"></app-header>
+  <div class="app-component__inner">
+    bla
+    {{ account}}
+    --
+    {{ value }}
+    !!
+    <button (click)="sendTx()">send</button>
+    <router-outlet></router-outlet>
+  </div>
 
-bla
-{{ account}}
---
-{{ value }}
-!!
-
-<button (click)="sendTx()">send</button>
-<router-outlet></router-outlet>
+  <app-footer [address]="account" class="app-component__footer"></app-footer>
+</div>

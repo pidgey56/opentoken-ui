@@ -11,7 +11,7 @@ const helloWorldArtifacts = require('../assets/HelloWorld.json');
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'openToken';
+  title = 'OpenToken';
   HelloWorld: Contract;
 
   account: string;

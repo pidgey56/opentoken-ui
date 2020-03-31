@@ -1,0 +1,11 @@
+.app-component__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.app-component__inner {
+  margin-left: 15px;
+  margin-right: 15px;
+}
