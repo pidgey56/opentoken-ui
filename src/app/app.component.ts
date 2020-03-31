@@ -1,6 +1,5 @@
 import { Web3Service } from './web3.service';
 import { Component, OnInit } from '@angular/core';
-import {from, Observable} from 'rxjs';
 
 import { Contract } from 'web3-eth-contract';
 declare let require: any;
@@ -15,19 +14,31 @@ export class AppComponent implements OnInit {
   title = 'openToken';
   HelloWorld: Contract;
 
-  accounts: string[];
+  account: string;
   value: string;
 
   constructor(private web3Service: Web3Service) {}
 
   watchAccount() {
     this.web3Service.accountsObservable.subscribe((accounts) => {
-      this.accounts = accounts;
+      this.account = accounts[0];
     });
   }
 
   sendTx() {
-    this.HelloWorld.methods.setDumbValue('Blaaaap').send({ from: this.accounts[0] });
+    this.HelloWorld.methods.setDumbValue('Helloo')
+      .send({ from: this.account })
+      .then(() => this.refreshDumbValue());
+  }
+
+  refreshDumbValue(): void {
+    this.HelloWorld.methods
+      .getDumbValue()
+      .call()
+      .then(dumb => {
+        this.value = dumb;
+      });
+
   }
 
   ngOnInit() {
@@ -36,10 +47,13 @@ export class AppComponent implements OnInit {
       .then(cc => {
         this.HelloWorld = cc;
         return this.HelloWorld.methods.getDumbValue().call();
-        }).then(dumb => {
-          this.value = dumb;
+      }).then(dumb => {
+      this.value = dumb;
     });
   }
+
+
+
 
 
 
