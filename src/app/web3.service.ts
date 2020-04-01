@@ -1,10 +1,9 @@
 import { Injectable } from "@angular/core";
-import { Observable, Subject } from "rxjs";
+import { Subject } from "rxjs";
 import { AbiItem } from "web3-utils";
-import { fromPromise } from "rxjs/internal-compatibility";
+import {environment} from "../environments/environment";
 declare let require: any;
 const Web3 = require("web3");
-const contract = require("@truffle/contract");
 
 declare let window: any;
 
@@ -15,7 +14,6 @@ export class Web3Service {
   private web3: any;
   private accounts: string[];
   public ready = false;
-  private contractAddr = "0xA586074FA4Fe3E546A132a16238abe37951D41fE";
 
   public accountsObservable = new Subject<string[]>();
 
@@ -54,7 +52,7 @@ export class Web3Service {
       return await this.artifactToContract(artif);
     }
     const item: AbiItem = artif.abi;
-    return new this.web3.eth.Contract(item, this.contractAddr);
+    return new this.web3.eth.Contract(item, environment.contractAddress);
   }
 
   private async refreshAccounts() {
