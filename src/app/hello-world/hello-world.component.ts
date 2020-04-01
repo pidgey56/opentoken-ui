@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Web3Service } from "../services/web3Service/web3.service";
 import { Contract } from "web3-eth-contract";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import {MatSnackBar} from '@angular/material';
 
 declare let require: any;
 const helloWorldArtifacts = require("../../assets/abi/HelloWorld.json");
@@ -17,7 +18,7 @@ export class HelloWorldComponent implements OnInit {
   account: string;
   form: FormGroup;
 
-  constructor(private web3Service: Web3Service) {}
+  constructor(private web3Service: Web3Service, private snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.watchAccount();
@@ -47,8 +48,12 @@ export class HelloWorldComponent implements OnInit {
       .setDumbValue(this.form.getRawValue().newValue)
       .send({ from: this.account, gas: 4500000 })
       .then(() => {
+        this.snackBar.open("Success ! :D", "X")
         this.form.reset();
         this.refreshDumbValue();
+      })
+      .catch(err => {
+        this.snackBar.open("Something went wrong ! :(", "X");
       });
   }
 
