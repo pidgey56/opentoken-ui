@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Web3Service } from "../web3.service";
+import { Web3Service } from "../services/web3Service/web3.service";
 import { Contract } from "web3-eth-contract";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 

@@ -1,4 +1,4 @@
-import { Web3Service } from "./web3.service";
+import { Web3Service } from "./services/web3Service/web3.service";
 import { Component, OnInit } from "@angular/core";
 
 @Component({

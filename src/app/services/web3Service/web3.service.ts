@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
 import { AbiItem } from "web3-utils";
-import {environment} from "../environments/environment";
+import {environment} from "../../../environments/environment";
 declare let require: any;
 const Web3 = require("web3");
 
