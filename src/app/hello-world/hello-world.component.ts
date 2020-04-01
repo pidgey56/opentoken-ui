@@ -3,7 +3,8 @@ import { Web3Service } from "../web3.service";
 import { Contract } from "web3-eth-contract";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 
-const helloWorldArtifacts = require("../../assets/HelloWorld.json");
+declare let require: any;
+const helloWorldArtifacts = require("../../assets/abi/HelloWorld.json");
 
 @Component({
   selector: "app-hello-world",
@@ -44,7 +45,7 @@ export class HelloWorldComponent implements OnInit {
   sendTx() {
     this.HelloWorldInstance.methods
       .setDumbValue(this.form.getRawValue().newValue)
-      .send({ from: this.account })
+      .send({ from: this.account, gas: 4500000 })
       .then(() => {
         this.form.reset();
         this.refreshDumbValue();
