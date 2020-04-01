@@ -5,18 +5,13 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import {
-  MatButtonModule,
-  MatFormFieldModule,
-  MatInputModule,
-  MatToolbarModule
-} from "@angular/material";
 import { HeaderComponent } from "./layout/header/header.component";
 import { FooterComponent } from "./layout/footer/footer.component";
 import { HelloWorldComponent } from "./hello-world/hello-world.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { RouterModule, Routes } from "@angular/router";
 import { WelcomeComponent } from "./welcome/welcome.component";
+import {MaterialModule} from "./material/material.module";
 
 const appRoutes: Routes = [
   { path: "hello-world", component: HelloWorldComponent },
@@ -34,14 +29,11 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatButtonModule,
     ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
+    MaterialModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],
