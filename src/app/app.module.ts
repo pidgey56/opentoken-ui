@@ -9,15 +9,10 @@ import { HeaderComponent } from "./layout/header/header.component";
 import { FooterComponent } from "./layout/footer/footer.component";
 import { HelloWorldComponent } from "./hello-world/hello-world.component";
 import { ReactiveFormsModule } from "@angular/forms";
-import { RouterModule, Routes } from "@angular/router";
+import { RouterModule } from "@angular/router";
 import { WelcomeComponent } from "./welcome/welcome.component";
 import {MaterialModule} from "./material/material.module";
-
-const appRoutes: Routes = [
-  { path: "hello-world", component: HelloWorldComponent },
-  { path: "", component: WelcomeComponent },
-  { path: "**", redirectTo: "/" }
-];
+import {appRoutes} from "./routes";
 
 @NgModule({
   declarations: [
