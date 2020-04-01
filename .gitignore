@@ -48,5 +48,3 @@ Thumbs.db
 # Environment
 src/environments/environment.ts
 
-# Contract Abi
-src/assets/abi/*.json
