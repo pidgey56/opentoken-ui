@@ -25,9 +25,8 @@ export class HelloWorldComponent implements OnInit {
       .init()
       .then(() => {
         this.isReady = true;
-        return this.helloworldService.getDumbValue();
-      })
-      .then(dumb => (this.dumbValue = dumb));
+        this.refreshDumbValue();
+      });
     this.form = new FormGroup({
       newValue: new FormControl("", Validators.required)
     });
