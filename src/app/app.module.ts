@@ -12,12 +12,11 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { WelcomeComponent } from "./welcome/welcome.component";
 import { MaterialModule } from "./material/material.module";
 import {SharedModule} from './shared/shared.module';
+import {LayoutModule} from './layout/layout.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    FooterComponent,
     HelloWorldComponent,
     WelcomeComponent
   ],
@@ -27,6 +26,7 @@ import {SharedModule} from './shared/shared.module';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    LayoutModule,
     SharedModule,
     MaterialModule,
   ],
