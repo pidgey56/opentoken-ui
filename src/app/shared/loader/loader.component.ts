@@ -1,4 +1,4 @@
-import {Component, Input} from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 @Component({
   selector: "app-loader",
@@ -13,7 +13,9 @@ export class LoaderComponent {
     this._show = value;
   }
 
-  get show(): boolean { return this._show; }
+  get show(): boolean {
+    return this._show;
+  }
 
-  constructor() { }
+  constructor() {}
 }

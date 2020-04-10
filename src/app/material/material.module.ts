@@ -3,7 +3,8 @@ import { CommonModule } from "@angular/common";
 import {
   MatButtonModule,
   MatFormFieldModule,
-  MatInputModule, MatProgressSpinnerModule,
+  MatInputModule,
+  MatProgressSpinnerModule,
   MatSnackBarModule,
   MatToolbarModule
 } from "@angular/material";
@@ -17,7 +18,7 @@ import {
     MatFormFieldModule,
     MatInputModule,
     MatSnackBarModule,
-    MatProgressSpinnerModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     MatToolbarModule,
@@ -25,7 +26,7 @@ import {
     MatFormFieldModule,
     MatInputModule,
     MatSnackBarModule,
-    MatProgressSpinnerModule,
+    MatProgressSpinnerModule
   ]
 })
 export class MaterialModule {}

@@ -11,15 +11,11 @@ import { HelloWorldComponent } from "./hello-world/hello-world.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { WelcomeComponent } from "./welcome/welcome.component";
 import { MaterialModule } from "./material/material.module";
-import {SharedModule} from './shared/shared.module';
-import {LayoutModule} from './layout/layout.module';
+import { SharedModule } from "./shared/shared.module";
+import { LayoutModule } from "./layout/layout.module";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HelloWorldComponent,
-    WelcomeComponent
-  ],
+  declarations: [AppComponent, HelloWorldComponent, WelcomeComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -28,7 +24,7 @@ import {LayoutModule} from './layout/layout.module';
     ReactiveFormsModule,
     LayoutModule,
     SharedModule,
-    MaterialModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

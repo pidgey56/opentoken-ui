@@ -20,12 +20,10 @@ export class HelloWorldComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.helloworldService
-      .init()
-      .then(() => {
-        this.isReady = true;
-        this.refreshDumbValue();
-      });
+    this.helloworldService.init().then(() => {
+      this.isReady = true;
+      this.refreshDumbValue();
+    });
     this.form = new FormGroup({
       newValue: new FormControl("", Validators.required)
     });
