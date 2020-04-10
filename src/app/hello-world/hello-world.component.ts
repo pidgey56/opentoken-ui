@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { Web3Service } from "../services/web3Service/web3.service";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { MatSnackBar } from "@angular/material";
 import { HelloworldService } from "../services/helloworldService/helloworld.service";
@@ -33,11 +32,13 @@ export class HelloWorldComponent implements OnInit {
   }
 
   sendTx() {
+    this.isReady = false;
     const v = this.form.getRawValue().newValue;
     this.helloworldService.setDumbValue(v).then(() => {
       this.snackBar.open("Success ! :D", "X");
       this.form.reset();
       this.refreshDumbValue();
+      this.isReady = true;
     });
   }
 

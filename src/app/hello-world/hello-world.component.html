@@ -1,6 +1,6 @@
 <div class="app-hello-world__container">
+  <app-loader [show]="!isReady"></app-loader>
   <div class="app-hello-world__value">
-    <div *ngIf="!isReady">Loading</div>
     My little dumb value: {{ dumbValue }}
   </div>
   <div class="app-hello-world__form">

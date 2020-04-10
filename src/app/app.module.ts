@@ -11,6 +11,7 @@ import { HelloWorldComponent } from "./hello-world/hello-world.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { WelcomeComponent } from "./welcome/welcome.component";
 import { MaterialModule } from "./material/material.module";
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MaterialModule } from "./material/material.module";
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MaterialModule
+    SharedModule,
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
