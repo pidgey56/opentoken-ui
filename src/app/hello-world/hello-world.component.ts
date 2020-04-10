@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Web3Service } from "../services/web3Service/web3.service";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import {MatSnackBar} from "@angular/material";
-import {HelloworldService} from "../services/helloworldService/helloworld.service";
+import { MatSnackBar } from "@angular/material";
+import { HelloworldService } from "../services/helloworldService/helloworld.service";
 
 @Component({
   selector: "app-hello-world",
@@ -15,13 +15,19 @@ export class HelloWorldComponent implements OnInit {
 
   isReady = false;
 
-  constructor(private helloworldService: HelloworldService, private snackBar: MatSnackBar) {}
+  constructor(
+    private helloworldService: HelloworldService,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit() {
-    this.helloworldService.init().then(() => {
-      this.isReady = true;
-      return this.helloworldService.getDumbValue();
-    }).then((dumb) => this.dumbValue = dumb);
+    this.helloworldService
+      .init()
+      .then(() => {
+        this.isReady = true;
+        return this.helloworldService.getDumbValue();
+      })
+      .then(dumb => (this.dumbValue = dumb));
     this.form = new FormGroup({
       newValue: new FormControl("", Validators.required)
     });
@@ -29,16 +35,14 @@ export class HelloWorldComponent implements OnInit {
 
   sendTx() {
     const v = this.form.getRawValue().newValue;
-    this.helloworldService.setDumbValue(v)
-      .then(() => {
-        this.snackBar.open("Success ! :D", "X");
-        this.form.reset();
-        this.refreshDumbValue();
-      });
-
+    this.helloworldService.setDumbValue(v).then(() => {
+      this.snackBar.open("Success ! :D", "X");
+      this.form.reset();
+      this.refreshDumbValue();
+    });
   }
 
   refreshDumbValue(): void {
-    this.helloworldService.getDumbValue().then(dumb => this.dumbValue = dumb);
+    this.helloworldService.getDumbValue().then(dumb => (this.dumbValue = dumb));
   }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import {ContractService} from "../contract.service";
+import { ContractService } from "../contract.service";
 
 declare let require: any;
 const helloWorldArtifacts = require("../../../assets/abi/HelloWorld.json");
@@ -8,7 +8,6 @@ const helloWorldArtifacts = require("../../../assets/abi/HelloWorld.json");
   providedIn: "root"
 })
 export class HelloworldService extends ContractService {
-
   public async init() {
     await this.initWeb3(helloWorldArtifacts);
   }
@@ -18,6 +17,8 @@ export class HelloworldService extends ContractService {
   }
 
   public setDumbValue(value: string): Promise<any> {
-    return this.instance.methods.setDumbValue(value).send({ from: this.account, gas: 4500000});
+    return this.instance.methods
+      .setDumbValue(value)
+      .send({ from: this.account, gas: 4500000 });
   }
 }

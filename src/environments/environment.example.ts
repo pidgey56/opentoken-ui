@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  contractAddress: "0xXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  contractAddress: "0xXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 };
 
 /*
